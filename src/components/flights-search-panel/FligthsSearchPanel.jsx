@@ -7,10 +7,13 @@ import qs from 'qs';
 
 const FlightsSearchPanel = ({ selectedFlight, changeSelectedFlight }) => {
   let { search, pathname } = useLocation();
+  const initialSelectedFlight = qs.parse(search, { ignoreQueryPrefix: true }).selected;
 
   useEffect(() => {
-    changeSelectedFlight(qs.parse(search, { ignoreQueryPrefix: true }).selected)
-  })
+    if(initialSelectedFlight){
+      changeSelectedFlight(initialSelectedFlight)
+    }
+  },[search])
 
   return (
     <header className='airport-board__header'>
