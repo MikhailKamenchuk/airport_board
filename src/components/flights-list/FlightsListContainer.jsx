@@ -1,47 +1,32 @@
-import React, { useEffect, useMemo } from 'react';
-import moment from 'moment';
-import classNames from 'classnames';
-import qs from 'qs';
+import React, { useEffect } from 'react';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
+import qs from 'qs';
+import PropTypes from "prop-types";
 import FlightsList from './FlightsList';
+import DirectionNavigatoin from '../direction-navigation/DirectionNavigation';
 import { fetchFlightsList } from "../../actions/flights.actions";
-import { arrivalsSelector, departuresSelector,dateSelector } from "../../selectors/flights.selectors";
-import { Link, Route, Switch, useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+import { arrivalsSelector, departuresSelector, dateSelector } from "../../selectors/flights.selectors";
 
 const FlightsListContainer = props => {
 
   useEffect(() => props.fetchFlightsList(props.date), [])
 
   const { search, pathname } = useLocation();
-
   const direction = pathname.split('/')[1];
 
   const selectedFlight = qs.parse(search, { ignoreQueryPrefix: true }).selected;
-  
+
   const flights = selectedFlight
-  ? props[direction].filter(flight => flight.codeShareData[0].codeShare.includes(selectedFlight.toLowerCase()))
-  : props[direction];
-  
-  const arrivalBtnClass = classNames('navigation__btn', 'btn_arrivals', { 'selected': direction === 'arrivals' })
-  const departuresBtnClass = classNames('navigation__btn', 'btn_departures', { 'selected': direction === 'departures' })
+    ? props[direction]
+      .filter(flight =>
+        flight.flightN.toLowerCase().includes(selectedFlight.toLowerCase()))
+    : props[direction];
 
   return (
     <main className="airport-board__content">
       <section className="flights">
-        <nav className="flights__navigation navigation">
-          <Link to={`/departures${search}`}>
-            <button className={departuresBtnClass} >
-              <i className="fas fa-plane-departure" />
-              <span>Departures</span>
-            </button>
-          </Link>
-          <Link to={`/arrivals${search}`}>
-            <button className={arrivalBtnClass} >
-              <i className="fas fa-plane-arrival" />
-              <span>Arrivals</span>
-            </button>
-          </Link>
-        </nav>
+        <DirectionNavigatoin />
         <Switch>
           <Route exact path='/'>
             {null}
@@ -52,17 +37,24 @@ const FlightsListContainer = props => {
     </main>
   )
 }
-// }
+
 const mapState = state => {
   return {
     arrivals: arrivalsSelector(state),
     departures: departuresSelector(state),
-    date: dateSelector(state)
+    date: dateSelector(state),
   }
 }
 
 const mapDispatch = {
   fetchFlightsList
 }
+
+FlightsListContainer.propTypes = {
+  arrivals: PropTypes.array.isRequired,
+  departures: PropTypes.array.isRequired,
+  date: PropTypes.string.isRequired,
+  fetchFlightsList: PropTypes.func.isRequired
+};
 
 export default connect(mapState, mapDispatch)(FlightsListContainer)

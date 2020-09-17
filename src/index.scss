@@ -89,11 +89,11 @@ body {
         justify-content: space-between;
         border-top-right-radius: 45px;
         border-top-left-radius: 45px;
-        &:hover{
+        &:hover {
           background-color: #1eb7ee;
         }
-        & a{
-          width: 50%
+        & a {
+          width: 50%;
         }
         & .navigation__btn {
           background-color: #73d2f0;
@@ -107,26 +107,25 @@ body {
           border-top-right-radius: 45px;
           border-top-left-radius: 45px;
           cursor: pointer;
-          &:hover{
+          &:hover {
             background-color: #1eb7ee;
           }
-          &.selected{
+          &.selected {
             background-color: #ffffff;
             color: #1eb7ee;
-            &.btn_departures{
+            &.btn_departures {
               -webkit-animation: 1s linear forwards change_border_top_right_radius;
               -moz-animation: 1s linear forwards change_border_top_right_radius;
               -o-animation: 1s linear forwards change_border_top_right_radius;
               animation: 1s linear forwards change_border_top_right_radius;
             }
-            &.btn_arrivals{
+            &.btn_arrivals {
               -webkit-animation: 1s linear forwards change_border_top_left_radius;
               -moz-animation: 1s linear forwards change_border_top_left_radius;
               -o-animation: 1s linear forwards change_border_top_left_radius;
               animation: 1s linear forwards change_border_top_left_radius;
             }
           }
-          
         }
       }
 
@@ -145,29 +144,38 @@ body {
             vertical-align: bottom;
             line-height: 2em;
             color: #ddd;
-
           }
+        }
+        & .no-flights {
+          text-align: center;
+          padding: 21px;
+          font-size: 22px;
+          color: #5d5656;
         }
         &__item {
           height: 30px;
-          &:nth-child(even){
+          &:nth-child(even) {
             background-color: #ffffff;
           }
-          & td{
-            padding: .5em 0;
+          & td {
+            padding: 0.5em 0;
           }
-          &_terminal{
+          &_terminal {
             text-align: center;
-            & span{
+            & span {
               display: block;
               text-align: center;
               border: 2px solid #00ff00;
               width: 40px;
               height: 40px;
-              color:#00ff00;
+              color: #00ff00;
               border-radius: 50%;
               line-height: 36px;
               margin: 0 auto;
+            }
+            &.blue span{
+              border: 2px solid #1eb7ee;
+              color: #1eb7ee;
             }
           }
 
@@ -176,12 +184,11 @@ body {
             & img {
               max-width: 50px;
               vertical-align: middle;
-
             }
             & span {
               max-width: 50%;
               vertical-align: middle;
-              margin-left: .5em;
+              margin-left: 0.5em;
             }
           }
         }

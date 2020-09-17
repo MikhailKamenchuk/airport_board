@@ -4,9 +4,13 @@ import { selectedFlightSelector } from '../../selectors/flights.selectors';
 import { changeSelectedFlight } from '../../actions/flights.actions'
 import { Link, useLocation } from 'react-router-dom';
 import qs from 'qs';
+import PropTypes from "prop-types";
 
 const FlightsSearchPanel = ({ selectedFlight, changeSelectedFlight }) => {
   let { search, pathname } = useLocation();
+
+  const direction = pathname === '/' ? '/departures' : pathname;
+
   const initialSelectedFlight = qs.parse(search, { ignoreQueryPrefix: true }).selected;
 
   useEffect(() => {
@@ -28,7 +32,7 @@ const FlightsSearchPanel = ({ selectedFlight, changeSelectedFlight }) => {
           onChange={e => changeSelectedFlight(e.target.value)}
         />
         <i className="search-icon fa fa-search" />
-        <Link to={`${pathname}?selected=${ selectedFlight }`}>
+        <Link to={`${direction}?selected=${ selectedFlight }`}>
           <button className="searach-flight__btn">Search</button>
         </Link>
       </form>
@@ -45,5 +49,10 @@ const mapState = state => {
 const mapDispatch = {
   changeSelectedFlight
 }
+
+FlightsSearchPanel.propTypes = {
+  selectedFlight: PropTypes.string.isRequired,
+  changeSelectedFlight: PropTypes.func.isRequired,
+};
 
 export default connect(mapState, mapDispatch)(FlightsSearchPanel)

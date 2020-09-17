@@ -43,6 +43,7 @@ export const fetchFlightsList = date => {
     dispatch(showSpinner())
     flightsGateway.getFlightList(date)
       .then(flights => dispatch(flightsDataRecieved(flights)))
+      .catch(error => alert(error.message))
   }
 }
 

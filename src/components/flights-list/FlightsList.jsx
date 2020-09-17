@@ -1,10 +1,17 @@
 import React from 'react';
-import Flight from './Flight'
+import { connect } from 'react-redux';
+import PropTypes from "prop-types";
+import { isFetchingSelector } from "../../selectors/flights.selectors";
+import Flight from './Flight';
+import Spinner from '../spinner/Spinner';
 
-const FlightsList = ({flights}) => {
-  
+
+const FlightsList = ({ flights, isFetching }) => {
   if (!flights) {
     return null
+  }
+  if(isFetching){
+    return <Spinner />
   }
 
   return (
@@ -20,14 +27,27 @@ const FlightsList = ({flights}) => {
         </tr>
       </thead>
       <tbody>
-        {flights.map(flight => (
-          <Flight key={flight.ID} flight={flight}/>
-        ))}
+        {
+          flights.length === 0
+            ? <tr><td className="no-flights" colSpan='6'>No Flights</td></tr>
+            : flights.map(flight => (
+              <Flight key={flight.id} flight={flight}/>
+            ))
+        }
       </tbody>
     </table>
   )
 }
 
+const mapState = state => {
+  return {
+    isFetching: isFetchingSelector(state),
+  }
+}
+
+FlightsList.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+};
 
 
-export default FlightsList
+export default connect(mapState)(FlightsList)

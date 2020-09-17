@@ -1,22 +1,48 @@
 import React from 'react';
-import moment from 'moment'
+import classNames from 'classnames';
+import PropTypes from "prop-types";
 
 const Flight = ({ flight }) => {
+  const {
+    term,
+    localTime,
+    destination,
+    status,
+    airline,
+    flightN
+  } = flight;
+
+  const termClass = classNames('flights__list__item_terminal', {'blue': term === "D"})
+
   return (
     <tr className="flights__list__item">
-      <td className='flights__list__item_terminal'>
-        <span>{flight.term}</span>
+      <td className={termClass}>
+        <span>{term}</span>
       </td>
-      <td>{moment(flight.actual).format('HH:mm')}</td>
-      <td>{flight['airportToID.city_en'] || flight['airportFromID.city_en']}</td>
-      <td>{flight.status}</td>
-      <td className='flights__list__item_airline' >
-        <img src={flight.airline.en.logoSmallName} alt="Lable" />
-        <span>{flight.airline.en.name}</span>
+      <td>{localTime}</td>
+      <td>{destination}</td>
+      <td>{status}</td>
+      <td className='flights__list__item_airline'>
+        <img src={airline.logo} alt="Lable" />
+        <span>{airline.name}</span>
       </td>
-      <td>{flight.codeShareData[0].codeShare}</td>
+      <td>{flightN}</td>
     </tr>
   )
 }
+
+Flight.propTypes = {
+  flight: PropTypes.shape({
+    term: PropTypes.string.isRequired,
+    localTime: PropTypes.string.isRequired,
+    destination: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    airline : PropTypes.shape({
+      logo: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired
+    }),
+    flightN: PropTypes.string.isRequired
+  })
+};
 
 export default Flight
