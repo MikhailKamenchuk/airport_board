@@ -6,8 +6,8 @@ export const statusCreator = (status, time) => {
       return `Landed ${time}`
     case 'DP':
       return `Departed at: ${time}`
-    // case '':
-    //   return 'In flight'
+    case 'FR':
+      return 'In flight'
     case 'ON':
       return 'On time'
     case 'CK':
