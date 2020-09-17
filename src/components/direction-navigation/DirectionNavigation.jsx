@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
+import './directionNavigation.scss'
 
 
 const DirectionNavigation = () => {

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from "prop-types";
+import qs from 'qs';
+import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectedFlightSelector } from '../../selectors/flights.selectors';
-import { changeSelectedFlight } from '../../actions/flights.actions'
-import { Link, useLocation } from 'react-router-dom';
-import qs from 'qs';
-import PropTypes from "prop-types";
+import { changeSelectedFlight } from '../../actions/flights.actions';
+import './flightsSearchPanel.scss'
 
 const FlightsSearchPanel = ({ selectedFlight, changeSelectedFlight }) => {
   let { search, pathname } = useLocation();
