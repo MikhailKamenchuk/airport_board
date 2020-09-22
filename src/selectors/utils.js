@@ -16,6 +16,8 @@ export const statusCreator = (status, time) => {
       return 'On time'
     case 'CK':
       return 'Check-in'
+    case 'CX':
+      return 'Cancelled'
     case 'BD':
       return 'Boarding'
     default:
