@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 import moment from 'moment';
-import { flightCreator} from './utils'
+import { flightCreator} from './flights.utils'
 
 export const allFlightsSelector = state => state.flights.flightsList;
 export const isFetchingSelector = state => state.flights.isFetching;

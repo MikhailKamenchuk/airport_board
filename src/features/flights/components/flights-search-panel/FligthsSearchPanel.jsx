@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from "prop-types";
 import qs from 'qs';
 import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { selectedFlightSelector } from '../../selectors/flights.selectors';
-import { changeSelectedFlight } from '../../actions/flights.actions';
+import { selectedFlightSelector } from '../../flights.selectors';
+import { changeSelectedFlight } from '../../flights.actions';
 import './flightsSearchPanel.scss'
 
 const FlightsSearchPanel = ({ selectedFlight, changeSelectedFlight }) => {
@@ -28,7 +28,7 @@ const FlightsSearchPanel = ({ selectedFlight, changeSelectedFlight }) => {
           type="text"
           className="searach-flight__input"
           name='searach-flight__input'
-          placeholder='Airline, destination, of flight #'
+          placeholder='Select flight #'
           value={selectedFlight}
           onChange={e => changeSelectedFlight(e.target.value)}
         />

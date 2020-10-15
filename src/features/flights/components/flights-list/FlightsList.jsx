@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
-import { isFetchingSelector } from "../../selectors/flights.selectors";
+import { isFetchingSelector } from "../../flights.selectors";
 import Flight from './Flight';
 import Spinner from '../spinner/Spinner';
 

@@ -1,5 +1,4 @@
-import * as flightsGateway from '../gateways/flights.gateway';
-// import { tasksDataSelector } from './flights.selectors'
+import * as flightsGateway from './flights.gateway';
 
 export const SHOW_SPINNER = 'FLIGHTS/SHOW_SPINNER';
 export const FLIGHTS_DATA_RECIEVED = 'FLIGHTS/FLIGHTS_DATA_RECIEVED';

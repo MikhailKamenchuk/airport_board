@@ -4,7 +4,7 @@ import {
   FLIGHTS_DATA_RECIEVED,
   FLIGHTS_DATA_FAILURE,
   CAHNGE_SELECTED_FLIGHT
-} from '../actions/flights.actions';
+} from './flights.actions';
 
 const initialState = {
   flightsList: [],

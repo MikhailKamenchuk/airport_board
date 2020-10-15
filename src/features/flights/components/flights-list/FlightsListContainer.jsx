@@ -5,8 +5,8 @@ import qs from 'qs';
 import PropTypes from "prop-types";
 import FlightsList from './FlightsList';
 import DirectionNavigatoin from '../direction-navigation/DirectionNavigation';
-import { fetchFlightsList } from "../../actions/flights.actions";
-import { arrivalsSelector, departuresSelector, dateSelector } from "../../selectors/flights.selectors";
+import { fetchFlightsList } from "../../flights.actions";
+import { arrivalsSelector, departuresSelector, dateSelector } from "../../flights.selectors";
 import './flightsList.scss'
 
 const FlightsListContainer = props => {

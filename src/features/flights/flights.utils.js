@@ -30,11 +30,11 @@ export const flightCreator = (flight, direction) => {
     ? flight.timeDepShedule
     : flight.timeToStand;
   const statusTime = direction === 'departure'
-  ? flight.timeTakeofFact
-  : flight.timeLandFact;
+    ? flight.timeTakeofFact
+    : flight.timeLandFact;
   const destination = direction === 'departure'
-  ? flight['airportToID.city_en']
-  : flight['airportFromID.city_en'];
+    ? flight['airportToID.city_en']
+    : flight['airportFromID.city_en'];
 
   return {
     id: flight.ID,
